@@ -5,6 +5,7 @@ const List = (props) =>
         <h4>{props.list.title}</h4>
         <p>{props.list.excerpt}</p>
         <button onClick={() => props.onRemoveList(props.list.id)}>Erase</button>
+        <button onClick={() => props.editingList(props.list.id)}>Edit</button>
         <hr />
     </div>
 

@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import List from './List'; 
 import NewListForm from './NewListForm'; 
+import EditListForm from './EditListForm'; 
 import axios from 'axios';
 
 class ListsContainer extends Component {
     constructor(props){
         super(props)
         this.state = {
-            lists: []
+            lists: [],
+            editingListId: null,
         }
         this.addNewList = this.addNewList.bind(this);
         this.removeList = this.removeList.bind(this);
+        this.editingList = this.editingList.bind(this);
+        this.editList = this.editList.bind(this);
     }
     componentDidMount() {
         axios.get('api/v1/lists.json')
@@ -49,16 +53,54 @@ class ListsContainer extends Component {
             console.log(error)
         })
     }
+    
+    editingList(id) {
+        this.setState({
+            editingListId: id
+        })
+    }
 
+    editList(id, title, excerpt) {
+        console.log("editing list")
+        axios.put('/api/v1/lists/' + id,  {list: {title, excerpt}})
+        .then(response => {
+            console.log(response);
+            let newList = {id, title, excerpt};
+            let lists = this.state.lists;
+            lists.forEach((list, index) => {
+                if (list.id === id) {
+                    lists[index] = newList
+                }
+            })
+            this.setState(() => ({
+                lists, 
+                editingListId: null
+            }))
+        })
+        .catch(error => {
+            console.log(error)
+        })      
+    }
 
     render() {
         return (
             <div className="lists-container">
                 {this.state.lists.map( list => {
-                    return (
-                        <List list={list} key={list.id} onRemoveList={this.removeList} />                    )
+                    if ( this.state.editingListId === list.id ) {
+                        return (<EditListForm 
+                                    list={list} 
+                                    key={list.id} 
+                                    editList={this.editList} 
+                        />)
+                    } else {
+                        return (<List 
+                                    list={list} 
+                                    key={list.id} 
+                                    onRemoveList={this.removeList}
+                                    editingList={this.editingList} 
+                        />)
+                    }
                 })}
-                <hr />
                 <NewListForm onNewList={this.addNewList} />
             </div>
         )
