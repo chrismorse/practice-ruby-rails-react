@@ -5,17 +5,11 @@ import EditListForm from './EditListForm';
 import axios from 'axios';
 
 class ListsContainer extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            lists: [],
-            editingListId: null,
-        }
-        this.addNewList = this.addNewList.bind(this);
-        this.removeList = this.removeList.bind(this);
-        this.editingList = this.editingList.bind(this);
-        this.editList = this.editList.bind(this);
+    state = {
+        lists: [],
+        editingListId: null,
     }
+
     componentDidMount() {
         axios.get('api/v1/lists.json')
         .then(response => {
@@ -27,7 +21,7 @@ class ListsContainer extends Component {
         .catch(error => console.log(error))
     }
     
-    addNewList(title, excerpt) {
+    addNewList = (title, excerpt) => {
         axios.post('/api/v1/lists', { list: {title, excerpt} })
         .then(response => {
             console.log(response)
@@ -39,7 +33,7 @@ class ListsContainer extends Component {
         })
       }
 
-    removeList(id) {
+    removeList = (id) => {
         axios.delete('/api/v1/lists/' + id)
         .then(response => {
             console.log(id, "deleted")
@@ -54,13 +48,13 @@ class ListsContainer extends Component {
         })
     }
     
-    editingList(id) {
+    editingList = (id) => {
         this.setState({
             editingListId: id
         })
     }
 
-    editList(id, title, excerpt) {
+    editList = (id, title, excerpt) => {
         console.log("editing list")
         axios.put('/api/v1/lists/' + id,  {list: {title, excerpt}})
         .then(response => {

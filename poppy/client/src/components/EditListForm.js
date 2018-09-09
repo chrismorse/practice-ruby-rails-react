@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
 
 class EditListForm extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            id: this.props.list.id,
-            title: this.props.list.title,
-            excerpt: this.props.list.excerpt
-        }
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
+    state = {
+        id: this.props.list.id,
+        title: this.props.list.title,
+        excerpt: this.props.list.excerpt
     }
+
     handleChange = (e) => {
         this.setState({[e.target.name]: e.target.value})
     }
-    handleSubmit(e){
+
+    handleSubmit = (e) => {
         e.preventDefault();
         const { id, title, excerpt } = this.state;
         this.props.editList(id, title, excerpt);
     }
+
     render(){
         return(
             <form onSubmit={this.handleSubmit}>
