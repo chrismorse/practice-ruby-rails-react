@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import ListsContainer from './components/ListsContainer';
-import CalculatorContainer from './components/CalculatorContainer';
+import ListsContainer from './components/list/ListsContainer';
+import CalculatorContainer from './components/tempCalc/CalculatorContainer';
 
 
 class App extends Component {
