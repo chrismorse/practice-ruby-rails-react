@@ -4,7 +4,7 @@ body {
   font-family: sans-serif;
 }
 
-.lists-container, .calculator-container {
+.lists-container, .calculator-container, .productData-container {
   text-align: left;
   padding-left: 20px;
 }  
@@ -12,6 +12,11 @@ body {
 .calculator-container {
   background-color: #eee;
 }
+
+.productData-container {
+  background-color: pink;
+}
+
 
 .single-list {
   padding-top: 10px;

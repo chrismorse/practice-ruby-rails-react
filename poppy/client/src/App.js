@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import ListsContainer from './components/list/ListsContainer';
 import CalculatorContainer from './components/tempCalc/CalculatorContainer';
-
+import ProductDataContainer from './components/productData/ProductDataContainer';
 
 class App extends Component {
   render() {
@@ -13,9 +13,11 @@ class App extends Component {
         </header>
         <ListsContainer />
         <hr />
-
         <CalculatorContainer />
-      </div>
+        <hr />
+        <ProductDataContainer />
+        <hr />
+        </div>
     );
   }
 }
