@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import ListsContainer from './components/ListsContainer';
+import CalculatorContainer from './components/CalculatorContainer';
+
 
 class App extends Component {
   render() {
@@ -10,6 +12,9 @@ class App extends Component {
           <h1 className="App-title">Hello Poppy!</h1>
         </header>
         <ListsContainer />
+        <hr />
+
+        <CalculatorContainer />
       </div>
     );
   }
