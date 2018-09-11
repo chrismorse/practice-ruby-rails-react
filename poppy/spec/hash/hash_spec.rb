@@ -4,7 +4,8 @@ describe Hash do
     end
   
     it "should return a blank instance" do
-        expect(Hash.new == {})
+        @newHash = Hash.new
+        expect(@newHash).to eq({})
     end
   
     it "hash the correct information in a key" do
